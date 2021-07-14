@@ -20,7 +20,6 @@ function App() {
     });
     setContacts(newContactList);
   };
-  console.log(contacts);
 
   useEffect(() => {
     const retriveContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
@@ -53,6 +52,7 @@ function App() {
               <AddContact {...props} addContactHandler={addContactHandler} />
             )}
           />
+          <Route path="/contact/:id" component={ContactDetail} />
         </Switch>
       </Router>
     </div>
