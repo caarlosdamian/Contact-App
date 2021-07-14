@@ -1,7 +1,9 @@
 import "../App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./Header";
 import AddContact from "./AddContact";
 import ContactList from "./ContactList";
+import ContactDetail from "./ContactDetail";
 import { v4 } from "uuid";
 import { useState, useEffect } from "react";
 
@@ -30,12 +32,29 @@ function App() {
   }, [contacts]);
   return (
     <div className="ui container">
-      <Header />
-      <div>
-        {" "}
-        <AddContact addContactHandler={addContactHandler} />
-        <ContactList data={contacts} getContactId={removeContactHandler} />
-      </div>
+      <Router>
+        <Header />
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={(props) => (
+              <ContactList
+                {...props}
+                data={contacts}
+                getContactId={removeContactHandler}
+              />
+            )}
+          />
+          <Route
+            path="/add"
+            exact
+            render={(props) => (
+              <AddContact {...props} addContactHandler={addContactHandler} />
+            )}
+          />
+        </Switch>
+      </Router>
     </div>
   );
 }

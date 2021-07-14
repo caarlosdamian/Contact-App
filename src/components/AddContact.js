@@ -19,6 +19,7 @@ const AddContact = (props) => {
     emailInput.current.value = "";
     setName("")
     setEmail("")
+    props.history.push("/") 
 
   };
 
